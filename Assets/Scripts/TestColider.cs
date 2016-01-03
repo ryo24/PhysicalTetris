@@ -25,7 +25,7 @@ public class TestColider : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(collidedCount >   10){
+		if(collidedCount >   15){
 			DestroyCollidedTetriminoChild();
 		}
 	

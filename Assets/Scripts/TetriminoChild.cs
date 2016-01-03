@@ -19,7 +19,10 @@ public class TetriminoChild : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if(this.transform.position.y < -20f){
+			tetriminoSpawner.SendMessage("Spawn");
+			Destroy(this.transform.parent.gameObject); 
+		}
 	}
 
 	void OnTriggerEnter(Collider other){
