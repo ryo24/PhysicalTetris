@@ -56,6 +56,13 @@ public class TetriminoParent : MonoBehaviour {
 		foreach(Transform child in children){
 			if(child != null){
 				childrenVelocityMagnitude += child.gameObject.GetComponent<Rigidbody>().velocity.magnitude;
+			}else{
+				if(isFallding){
+					Debug.Log("TetriminoParent: Child Destroyed. Next Spawn");
+					isFallding = false;
+					StartCoroutine("SpawnCoroutine");
+					return;
+				}
 			}
 		}
 		childrenVelocityMagnitude  = childrenVelocityMagnitude / children.Length;
