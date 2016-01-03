@@ -47,7 +47,6 @@ public class TestColider : MonoBehaviour {
 
 				if(arrayNumber >= 0){
 					collidedTetriminoChildIds[arrayNumber] = childInstanceId;
-					 //TODO: Check Error
 					collidedTetriminoChildGameObjects[arrayNumber] = collider.gameObject;
 					collidedCount++;
 					Debug.Log("Counted Collided Tetrimino Child in TestCollider");
