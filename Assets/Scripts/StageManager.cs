@@ -9,7 +9,7 @@ public class StageManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		tetriminoMaxNumber =  2;
+		tetriminoMaxNumber =   30;
 		RowBreakThreshold = 15;
 		leftNumber.text = tetriminoMaxNumber.ToString();
 	

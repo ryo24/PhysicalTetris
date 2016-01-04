@@ -6,11 +6,13 @@ public class BlockSpawner : MonoBehaviour {
 	float timer = 0;
 	public GameObject[] tetrimino;
 	public GameObject spawner;
+	GameObject stageManager;
 
 
 	// Use this for initialization
 	void Start () {
 		spawner = GameObject.Find("TetriminoSpawner"); 
+		stageManager = GameObject.Find("StageManager");
 		Spawn();
 	
 	}
@@ -45,6 +47,7 @@ public class BlockSpawner : MonoBehaviour {
 		Instantiate(tetrimino[random],
 		            new Vector3(Random.Range( -6.0f,6.0f), spawner.transform.position.y, spawner.transform.position.z),
 		            Quaternion.identity);
+		stageManager.SendMessage("DecreaseLeftNumber");
 
 
 	}
