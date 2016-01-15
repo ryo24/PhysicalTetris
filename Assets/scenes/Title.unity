@@ -236,10 +236,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'pile Tetrimino and Make tower !
+  m_Text: 'Operate Tetrimino and Make tower !
 
 
-    Goal : Reach Red Line !!'
+    GameOver : Drop Tetriminos or Erase them'
 --- !u!222 &100922855
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -318,6 +318,48 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 406413556}
+--- !u!1001 &774266954
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 422918, guid: 17495c6c1a9724736aad7ddedeb84da9, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 422918, guid: 17495c6c1a9724736aad7ddedeb84da9, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 422918, guid: 17495c6c1a9724736aad7ddedeb84da9, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 422918, guid: 17495c6c1a9724736aad7ddedeb84da9, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 422918, guid: 17495c6c1a9724736aad7ddedeb84da9, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 422918, guid: 17495c6c1a9724736aad7ddedeb84da9, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 422918, guid: 17495c6c1a9724736aad7ddedeb84da9, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 422918, guid: 17495c6c1a9724736aad7ddedeb84da9, type: 2}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 17495c6c1a9724736aad7ddedeb84da9, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &974799275
 GameObject:
   m_ObjectHideFlags: 0

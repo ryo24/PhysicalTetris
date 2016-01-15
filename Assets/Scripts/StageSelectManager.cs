@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class UIManager : MonoBehaviour {
+public class StageSelectManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -13,7 +13,7 @@ public class UIManager : MonoBehaviour {
 	
 	}
 
-	public void StartButton(){
-		Application.LoadLevel("EndlessScene");
+	public void StartStage(){
+		Application.LoadLevel("TestMainScene");
 	}
 }

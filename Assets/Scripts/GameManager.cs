@@ -2,11 +2,43 @@
 using System.Collections;
 
 public class GameManager : MonoBehaviour {
-	public int TetriminoMaxNumber = 30;
-	public int RowBreakThreshold = 15;
+	public int TetriminoMaxNumber;
+	public int RowBreakThreshold;
+	public int LimitBreakTimes;
+	public int stepNumber;
+	 
+	public static bool isCreated = false;
+	
+	public enum GameMode{
+		Endless,
+		Mission
+	}
+
+	public GameMode state;
+
+
+	void Awake(){
+		if(!isCreated){
+			DontDestroyOnLoad(this.gameObject);
+			isCreated = true;
+		}else{
+			Destroy(this.gameObject);
+		}
+	}
 
 	// Use this for initialization
 	void Start () {
+		stepNumber = 0;
+
+		if(TetriminoMaxNumber == 0){
+			TetriminoMaxNumber = 10;
+		}
+		if(RowBreakThreshold == 0){
+			RowBreakThreshold = 20;
+		}
+		if(LimitBreakTimes == 0){
+			LimitBreakTimes = 5;
+		}
 	
 	}
 	
