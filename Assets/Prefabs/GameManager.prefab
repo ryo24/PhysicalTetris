@@ -40,8 +40,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TetriminoMaxNumber: 2
-  RowBreakThreshold: 0
-  LimitBreakTimes: 0
+  RowBreakThreshold: 14
+  LimitBreakTimes: 90
   stepNumber: 0
   state: 0
 --- !u!1001 &100100000
@@ -57,7 +57,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: LimitBreakTimes
-      value: 0
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: RowBreakThreshold
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
