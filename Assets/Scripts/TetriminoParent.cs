@@ -16,7 +16,7 @@ public class TetriminoParent : MonoBehaviour {
 //	float coroutineCount;
 
 	public bool isFallding;
-
+	bool isSpawn;
 
 
 	// Use this for initialization
@@ -24,6 +24,7 @@ public class TetriminoParent : MonoBehaviour {
 
 		 //_rigidbody = this.GetComponent<Rigidbody>();
 		isFallding = true;
+		isSpawn = false;
 		tetriminoSpawner = GameObject.Find("TetriminoSpawner");
 //		coroutineCount = 0.0f;
 
@@ -60,7 +61,7 @@ public class TetriminoParent : MonoBehaviour {
 				if(isFallding){
 					Debug.Log("TetriminoParent: Child Destroyed. Next Spawn");
 					isFallding = false;
-					StartCoroutine("SpawnCoroutine");
+					SpawnNextTetrimino();
 					return;
 				}
 			}
@@ -72,7 +73,7 @@ public class TetriminoParent : MonoBehaviour {
 		if( isFallding && childrenVelocityMagnitude <  2.0f){
 			Debug.Log("spawnPhase");
 			isFallding = false;
-			StartCoroutine("SpawnCoroutine");
+			SpawnNextTetrimino();
 			 //tetriminoSpawner.SendMessage("Spawn");
 		}
 
@@ -105,9 +106,13 @@ public class TetriminoParent : MonoBehaviour {
 			}
 		}
 
+	}
 
-	
-	
+	public void SpawnNextTetrimino(){
+		if(!isSpawn){
+			StartCoroutine("SpawnCoroutine");
+			isSpawn = true;
+		}
 	}
 
 	void leftRotate(){

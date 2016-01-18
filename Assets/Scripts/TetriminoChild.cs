@@ -22,7 +22,9 @@ public class TetriminoChild : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(this.transform.position.y < -20f){
-			tetriminoSpawner.SendMessage("Spawn");
+			this.transform.parent.gameObject.SendMessage("SpawnNextTetrimino");
+			//tetriminoSpawner.SendMessage("Spawn");
+
 			stageManager.SendMessage("DecreaseLeftNumber");
 			Destroy(this.transform.parent.gameObject); 
 		}
