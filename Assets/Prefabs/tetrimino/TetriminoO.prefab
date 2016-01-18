@@ -297,8 +297,8 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 171988}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
+  m_Mass: 12
+  m_Drag: .300000012
   m_AngularDrag: .0500000007
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -312,8 +312,8 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 199044}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
+  m_Mass: 12
+  m_Drag: .300000012
   m_AngularDrag: .0500000007
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -342,8 +342,8 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 121952}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
+  m_Mass: 12
+  m_Drag: .300000012
   m_AngularDrag: .0500000007
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -357,8 +357,8 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 140008}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
+  m_Mass: 12
+  m_Drag: .300000012
   m_AngularDrag: .0500000007
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -540,6 +540,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_TagString
       value: tetriminochild
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Mass
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Drag
+      value: .300000012
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
