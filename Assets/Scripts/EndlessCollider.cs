@@ -73,6 +73,16 @@ public class EndlessCollider : MonoBehaviour {
 		}
 	}
 
+	void OnTriggerStay(Collider collider){
+		bool isfalling  = collider.transform.parent.gameObject.GetComponent<TetriminoParent>().isFallding;
+		
+		if(!isfalling){
+			Debug.Log("CountStep: " + stepNumber);
+			stageManager.SendMessage("IncreaseStepNumber", stepNumber);
+			
+		}
+	}
+
 	void OnTriggerExit(Collider collider){
 		Debug.Log("OnTriggerExit start ");
 
