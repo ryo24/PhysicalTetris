@@ -106,6 +106,43 @@ public class TetriminoParent : MonoBehaviour {
 			}
 		}
 
+		 //Touch Input
+		if (Input.touchCount > 0){
+			Touch touch = Input.GetTouch(0);
+
+			switch(touch.phase){
+			case TouchPhase.Began:
+				Vector3 startPosition = touch.position;
+				rightRotate();
+				break;
+
+			case TouchPhase.Stationary:
+				Vector3 forward = new Vector3(touch.position.x - transform.position.x,0,0);
+				forward.Normalize();
+				this.transform.position += forward;
+				break;
+
+			case TouchPhase.Ended:
+				Vector3 endPosition = touch.position;
+				float swipeDistance = new Vector3(endPosition - startPosition).magnitude;
+
+				if(swipeDistance > 20f){
+
+					float signY = Mathf.Sign( endPosition.y - startPosition.y);
+					if(signY > 0){
+						foreach(Transform child in children){
+							child.GetComponent<Rigidbody>().velocity = new Vector3(0,0,10f);
+						}
+					}
+				}
+				break;
+			}
+
+		}
+
+
+
+
 	}
 
 	public void SpawnNextTetrimino(){
