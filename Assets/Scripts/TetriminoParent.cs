@@ -18,6 +18,16 @@ public class TetriminoParent : MonoBehaviour {
 	public bool isFallding;
 	bool isSpawn;
 
+	Vector3 startPosition;
+	Vector3 endPosition;
+
+	public bool isHolding;
+	public Vector3 offset;
+	RaycastHit hit;
+	Vector3 world;
+
+	float CAMERA_DEPTH = 15.0f;
+
 
 	// Use this for initialization
 	void Start () {
@@ -47,8 +57,10 @@ public class TetriminoParent : MonoBehaviour {
 			}
 		}
 
-		//StartCoroutine("AutoMoveGravityCenter");
-	
+		startPosition = new Vector2 ( 0,0);
+		endPosition = new Vector2 (0,0);
+
+			
 	}
 	
 	// Update is called once per frame
@@ -106,32 +118,127 @@ public class TetriminoParent : MonoBehaviour {
 			}
 		}
 
+
+		 //=====Debugging mouse input=====
+
+		if(Input.GetMouseButtonDown(0) && isFallding){
+			isHolding = false;
+			
+			Vector3 mouse = Input.mousePosition;
+			mouse.z = CAMERA_DEPTH;
+			//			Debug.Log("InputGetMouseButton");
+			//			Debug.Log("mousepositon = " + mouse);
+			Vector3 world = Camera.main.ScreenToWorldPoint(mouse);
+			Ray ray = Camera.main.ScreenPointToRay(mouse);
+			
+			
+			if(Physics.Raycast(ray, out hit,100)){
+				Debug.Log("hit");
+				//int instanceid = this.transform.GetInstanceID();
+				int hitid = hit.transform.GetInstanceID();
+				Debug.Log("hitid = " + hitid);
+				
+				int count = 0;
+				foreach(Transform child in children){
+					Debug.Log("count = " +  count);
+					count++;
+					
+					if( hitid == child.GetInstanceID()){
+						offset =   transform.position - child.position ;
+						isHolding  = true;
+					}
+				}
+			}
+			
+			if(!isHolding){
+				if(world.x - this.transform.position.x > 0){
+					rightRotate();
+				}else{
+					leftRotate();
+				}
+				offset = Vector3.zero;
+			}
+
+		}
+
+		if(Input.GetMouseButton(0) && isHolding && isFallding){
+			Vector3 mouse = Input.mousePosition;
+			mouse.z = CAMERA_DEPTH;
+			Vector3 world = Camera.main.ScreenToWorldPoint(mouse);
+			transform.position = new Vector3(world.x + offset.x ,transform.position.y,transform.position.z);
+			
+		}
+
 		 //Touch Input
-		if (Input.touchCount > 0){
+		if (Input.touchCount > 0 && isFallding){
 			Touch touch = Input.GetTouch(0);
 
 			switch(touch.phase){
 			case TouchPhase.Began:
-				Vector3 startPosition = touch.position;
-				rightRotate();
-				break;
+				isHolding = false;
+				
+				startPosition = touch.position;
+				startPosition.z = CAMERA_DEPTH;
+				//			Debug.Log("InputGetMouseButton");
+				//			Debug.Log("mousepositon = " + mouse);
+				world = Camera.main.ScreenToWorldPoint(startPosition);
+				Ray ray = Camera.main.ScreenPointToRay(startPosition);
+				
+				
+				if(Physics.Raycast(ray, out hit,100)){
+					Debug.Log("hit");
+					//int instanceid = this.transform.GetInstanceID();
+					int hitid = hit.transform.GetInstanceID();
+					Debug.Log("hitid = " + hitid);
+					
+					int count = 0;
+					foreach(Transform child in children){
+						if( hitid == child.GetInstanceID()){
+							offset =   transform.position - child.position ;
+							isHolding  = true;
+						}
+					}
+				}
+				
+				if(!isHolding){
+					if(world.x - this.transform.position.x > 0){
+						rightRotate();
+					}else{
+						leftRotate();	
+					}
+					offset = Vector3.zero;
+				}
+			break;
 
+			case TouchPhase.Moved:
 			case TouchPhase.Stationary:
-				Vector3 forward = new Vector3(touch.position.x - transform.position.x,0,0);
-				forward.Normalize();
-				this.transform.position += forward;
-				break;
+				Vector3 mouse = touch.position;
+				mouse.z = CAMERA_DEPTH;
+				world = Camera.main.ScreenToWorldPoint(mouse);
+				transform.position = new Vector3(world.x + offset.x ,transform.position.y,transform.position.z);
+
+			break;
+
+//			case TouchPhase.Stationary:
+//				float distance = Vector3.Distance(Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x,touch.position.y,0)), transform.position);
+//				Vector3 forward = new Vector3(distance,0,0);
+//				//Vector3 forward = new Vector3(touch.position.x - transform.position.x,0,0);
+//				forward.Normalize();
+//				this.transform.position += forward * Time.deltaTime;
+//				break;
 
 			case TouchPhase.Ended:
-				Vector3 endPosition = touch.position;
-				float swipeDistance = new Vector3(endPosition - startPosition).magnitude;
+				endPosition =touch.position;
+				endPosition.z = CAMERA_DEPTH;
+				float swipeDistance = (endPosition - startPosition).magnitude;
 
 				if(swipeDistance > 20f){
 
+				 	//float signY = Mathf.Sign( (endPosition.y - startPosition.y));
 					float signY = Mathf.Sign( endPosition.y - startPosition.y);
-					if(signY > 0){
+					if(signY < 0){
 						foreach(Transform child in children){
-							child.GetComponent<Rigidbody>().velocity = new Vector3(0,0,10f);
+							child.GetComponent<Rigidbody>().velocity = new Vector3(0, -5.0f,0);
 						}
 					}
 				}

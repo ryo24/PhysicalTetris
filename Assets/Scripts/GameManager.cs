@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+		Screen.orientation = ScreenOrientation.Portrait;
 		stepNumber = 0;
 
 		if(TetriminoMaxNumber == 0){
